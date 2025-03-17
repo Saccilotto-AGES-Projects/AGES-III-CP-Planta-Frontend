@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import Header from '@/src/components/common/header';
 import { stepsByProductId } from '@/src/services/stepService';
 import { getOrderById } from '@/src/services/order.service';
-import ReturnIcon from '@/src/components/icons/return-icon.svg';
+import ReturnIcon from '@/public/return-icon.svg';
 import Image from 'next/image';
 import { FullOrder } from '@/src/types/Order';
 

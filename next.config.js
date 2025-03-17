@@ -3,13 +3,25 @@ const path = require('path');
 
 const nextConfig = {
   reactStrictMode: true,
-  staticPageGenerationTimeout: 300, // Increased to 5 minutes
+  staticPageGenerationTimeout: 300, 
   images: {
-    domains: [
-      'cpplanta.duckdns.org',
-      'api.cpplanta.duckdns.org',
-      'pgadmin.cpplanta.duckdns.org',
-      'localhost'
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cpplanta.duckdns.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.cpplanta.duckdns.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'pgadmin.cpplanta.duckdns.org',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      }
     ],
     dangerouslyAllowSVG: true, // Allow SVG as images
     contentDispositionType: 'attachment',
@@ -29,7 +41,7 @@ const nextConfig = {
       return [
         {
           source: '/api/:path*',
-          destination: 'http://localhost:3000/:path*'
+          destination: `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/:path*`
         }
       ];
     }

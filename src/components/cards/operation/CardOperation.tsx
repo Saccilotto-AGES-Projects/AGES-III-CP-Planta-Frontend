@@ -1,4 +1,4 @@
-import SvgIcon from '../../common/SvgIcon';
+import SvgIcon from '@/src/components/common/SvgIcon';
 import { useRouter } from 'next/navigation';
 
 type Props = {

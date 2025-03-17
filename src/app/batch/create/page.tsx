@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import DefaultListItems from '@/src/components/common/lists/DefaultListItems';
 import Image from 'next/image';
-import ReturnIcon from '@/src/components/icons/return-icon.svg';
+import SvgIcon from '@/src/components/common/SvgIcon';
 import { useForm } from 'react-hook-form';
 import SelectInputCreateBatch from '@/src/components/batch-create/SelectInputCreateBatch';
 import axiosInstance from '@/src/services/axiosInstance';
@@ -170,7 +170,7 @@ export default function CreateBatch() {
             className=" text-greenHortti return-button "
             onClick={() => router.push('/home')}
           >
-            <Image src={ReturnIcon} alt="Retornar" width={14} height={14} />
+            <Image src="./return-icon.svg" alt="Retornar" width={14} height={14} />
           </button>
           <DynamicBox title="Cadastro de Lote">
             <SelectInputCreateBatch

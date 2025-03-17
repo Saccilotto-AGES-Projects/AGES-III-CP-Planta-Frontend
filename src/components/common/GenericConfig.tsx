@@ -2,10 +2,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 
-import AddIcon from '@/src/components/icons/white-add-icon.svg';
-import SearchIcon from '@/src/components/icons/search-icon.svg';
-import EditIcon from '@/src/components/icons/edit-icon.svg';
-import DeleteIcon from '@/src/components/icons/delete-icon.svg';
+
+import SvgIcon from '@/src/components/common/SvgIcon';
 import Toast from './Toast';
 
 interface TableColumn {
@@ -132,7 +130,7 @@ export default function GenericConfig<T extends { [key: string]: any }>({
               onChange={e => setSearchTerm(e.target.value)}
             />
             <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-              <Image src={SearchIcon} alt="Pesquisar" width={14} height={14} />
+              <SvgIcon src="/search-icon.svg" alt="Pesquisar" width={14} height={14} />
             </div>
           </div>
           {/* Botão Adicionar */}
@@ -140,7 +138,7 @@ export default function GenericConfig<T extends { [key: string]: any }>({
             className="bg-greenHortti text-white px-20 py-2 rounded-lg hover:bg-green-700 flex items-center"
             onClick={() => setShowAddModal(true)}
           >
-            <Image src={AddIcon} alt="Adicionar" width={14} height={14} />
+            <SvgIcon src="/white-add-icon.svg" alt="Adicionar" width={14} height={14} />
             <span className="ml-2 text-sm">Adicionar</span>
           </button>
         </div>
@@ -186,14 +184,14 @@ export default function GenericConfig<T extends { [key: string]: any }>({
                     className="text-greenHortti px-4 font-bold"
                     onClick={() => setShowEditModal(item)}
                   >
-                    <Image src={EditIcon} alt="Editar" width={18} height={18} />
+                    <SvgIcon src="/edit-icon.svg" alt="Editar" width={18} height={18} />
                   </button>
                   <button
                     className="text-red-600 px-4 font-bold"
                     onClick={() => setShowDeleteModal(item)}
                   >
                     <Image
-                      src={DeleteIcon}
+                      src="/delete-icon.svg"
                       alt="Deletar"
                       width={14}
                       height={14}

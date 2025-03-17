@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import SvgIcon from '../common/SvgIcon';
+import SvgIcon from '@/src/components/common/SvgIcon';
 
 type Props = {
   title: string;

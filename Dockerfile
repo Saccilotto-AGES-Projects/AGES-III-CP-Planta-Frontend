@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 
 # Install dependencies
-RUN npm ci --no-audit --prefer-offline
+RUN npm i --no-audit --prefer-offline
 
 # Copy configuration files
 COPY next.config.js tsconfig.json tailwind.config.js ./
@@ -42,6 +42,9 @@ COPY --from=builder /app/package.json ./package.json
 
 # Set proper permissions
 RUN chmod -R 755 .next
+
+# Set environment variables for forcing production mode
+ENV PORT=3001
 
 # Expose the application port
 EXPOSE 3001

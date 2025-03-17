@@ -13,7 +13,7 @@ import OnClickButton from '@/src/components/buttons/OnClickButton/DefaultOnClick
 import DynamicBox from '@/src/components/common/DynamicBox';
 import DefaultListItems from '@/src/components/common/lists/DefaultListItems';
 import Image from 'next/image';
-import ReturnIcon from '@/src/components/icons/return-icon.svg';
+import ReturnIcon from '@/public/return-icon.svg';
 
 export default function OrderCreate() {
   const router = useRouter();
