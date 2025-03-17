@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import GearIcon from '../../icons/gear-icon.svg';
+import SvgIcon from '../common/SvgIcon';
 
 type Props = {
   href: string;
@@ -9,8 +8,8 @@ type Props = {
 export default function ButtonSettings({ href }: Props) {
   return (
     <Link href={href}>
-      <Image
-        src={GearIcon}
+      <SvgIcon
+        src="/gear-icon.svg" // Move SVG to public folder
         alt="Configurações"
         width={45.31}
         height={45}

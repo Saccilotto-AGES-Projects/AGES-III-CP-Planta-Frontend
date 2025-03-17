@@ -1,43 +1,50 @@
-# Use uma imagem base oficial do Node.js
-FROM node:22 AS builder
+# Use a specific Node.js version for better stability
+FROM node:18-alpine AS builder
 
-# Defina o diretório de trabalho dentro do container
+# Set working directory
 WORKDIR /app
 
-# Copie os arquivos package.json 
-COPY package.json ./
+# Copy package files first for better caching
+COPY package.json package-lock.json* ./
 
-# Instale as dependências
-RUN npm install --force
+# Install dependencies
+RUN npm ci --no-audit --prefer-offline
 
-COPY tsconfig.json ./  
-COPY tailwind.config.js ./
+# Copy configuration files
+COPY next.config.js tsconfig.json tailwind.config.js ./
 
-# Copie o restante do código da aplicação
-COPY . .
+# Copy public directory (for static assets including SVGs)
+COPY public ./public
 
-# Aumenta a memória para o Node durante a build
+# Copy source code
+COPY src ./src
+
+# Copy additional required files
+COPY .env* ./
+COPY *.css *.js *.json ./
+
+# Increase Node.js memory limit
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 
-# Compile o projeto para produção 
+# Build the application
 RUN npm run build
 
-# Agora, crie uma imagem final com o código de produção
-FROM node:22 AS runner
-
+# Production image
+FROM node:18-alpine AS runner
 WORKDIR /app
 
-# Copie apenas os arquivos necessários da build anterior
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/node_modules ./node_modules
-# After copying the files in the runner stage
+# Copy necessary files from builder
+COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public 
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
 
+# Set proper permissions
 RUN chmod -R 755 .next
 
-# Exponha a porta onde a aplicação vai rodar
+# Expose the application port
 EXPOSE 3001
 
-# Comando para iniciar a aplicação
+# Start the application
 CMD ["npm", "run", "start"]

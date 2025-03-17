@@ -1,8 +1,7 @@
 'use client';
 import { usePathname, useRouter } from 'next/navigation';
 import NavbarButtonComponent from '../buttons/config/navbarButton';
-import ReturnIcon from '@/src/components/icons/return-icon.svg';
-import Image from 'next/image';
+import SvgIcon from './SvgIcon';
 
 interface navbarProps {
   children: React.ReactNode;
@@ -22,7 +21,7 @@ const ConfigNavbar: React.FC<navbarProps> = ({ children }) => {
             className=" text-greenHortti  pr-2 "
             onClick={() => router.push('/home')}
           >
-            <Image src={ReturnIcon} alt="Retornar" width={14} height={14} />
+            <SvgIcon src="/return-icon.svg" alt="Retornar" width={14} height={14} />
           </button>{' '}
           Painel de Configuração
         </h1>
