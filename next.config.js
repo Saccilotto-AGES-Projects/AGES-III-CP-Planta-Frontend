@@ -3,6 +3,7 @@ const path = require('path');
 
 const nextConfig = {
   reactStrictMode: true,
+  staticPageGenerationTimeout: 180, // Increase to 180 seconds (3 minutes)
   env: {
     API_URL: process.env.NEXT_PUBLIC_API_URL || 'https://api.cpplanta.duckdns.org',
   },

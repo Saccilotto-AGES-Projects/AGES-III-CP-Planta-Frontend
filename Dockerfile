@@ -16,6 +16,9 @@ COPY tailwind.config.js ./
 # Copie o restante do código da aplicação
 COPY . .
 
+# Aumenta a memória para o Node durante a build
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
 # Compile o projeto para produção 
 RUN npm run build
 
