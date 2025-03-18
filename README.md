@@ -1,134 +1,157 @@
-# **Configurações do Projeto - CP-Planta**
+# CP-Planta Frontend
 
-## Sumário
+Modern web interface for the CP-Planta production control system, built with Next.js and Tailwind CSS.
 
-- [Configurações Gerais](#configurações-gerais)
-  - [Instalação do Ambiente de Desenvolvimento](#instalação-do-ambiente-de-desenvolvimento)
-- [Frontend](#frontend)
-  - [Configurando o Frontend](#configurando-o-frontend)
-  - [Rodando o Frontend](#rodando-o-frontend)
-  - [Acessando o Frontend](#postmaninsomnia)
-- [Extras](#extras)
-  - [Integração com o Backend](#integração-com-o-backend)
-- [Estou com pressa: Resumo](#resumo-dos-passos)
+![Banner](https://avatars.githubusercontent.com/u/202462667?s=200&v=4)
 
-> **Observação:** Consulte a documentação do projeto no menu [Instalação](https://tools.ages.pucrs.br/cp-planta/wiki/-/wikis/instalacao) para mais detalhes sobre o processo.
+## Overview
 
-## **Configurações Gerais**
+CP-Planta Frontend provides an intuitive and responsive user interface for a production control system designed for a plant processing hygienized products. The application offers a complete view of production workflows, inventory management, and quality control processes.
 
-### **Instalação do Ambiente de Desenvolvimento**
+## Features
 
-Antes de configurar os ambientes, siga estas instruções gerais:
+- **Dashboard**: Real-time production metrics and KPIs
+- **Production Management**: Create and monitor production orders
+- **Inventory Control**: Track raw materials and finished products
+- **Quality Control**: Record quality inspections and issues
+- **User Management**: Role-based access and permissions
+- **Mobile Responsive**: Optimized for both desktop and mobile devices
 
-- **VSCode**: Baixe [aqui](https://code.visualstudio.com/download).
+## Technology Stack
 
-- **Plugins recomendados para VSCode**:  
-  - ESLint
-  - Prettier
-  - Jest
-  - Jest Runner
-  - GitHub Copilot (opcional).
+- **Framework**: [Next.js](https://nextjs.org/) - React framework with server-side rendering
+- **UI Library**: [React](https://reactjs.org/) - Component-based UI library
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- **State Management**: React Context API and Hooks
+- **Form Handling**: React Hook Form with Zod validation
+- **HTTP Client**: Axios for API communication
+- **Authentication**: JWT-based auth with secure HTTP-only cookies
+- **Animation**: AOS (Animate On Scroll) for UI interactions
 
-- **NodeJS**: Verifique se o Node está instalado:
-  ```bash
-  node --version
-  ```
-  Caso não esteja, siga o [tutorial oficial](https://nodejs.org/en/download/).
+## Development Setup
 
-- **NPM**: O NPM já vem com o NodeJS. Verifique a versão:
-  ```bash
-  npm --version
-  ```
-- **YARN**: Caso queira utilizar o yarn, precisa verificar se está instalado:
-  ```bash
-  yarn --version
-  ```
-  para instalar: 
-    ```bash
-  npm install --global yarn
-  ```
----
+### Prerequisites
 
-# **Frontend**
+- Node.js (v18+)
+- npm or yarn
+- Backend API (CP-Planta Backend) running
 
-## **Configurando o Frontend**
+### Installation
 
-1. **Instalar Node (versão 18.0 ou superior)**:
-   - Para Windows: [Download Node.js](https://nodejs.org/en/download/package-manager/)
-   - Para Linux:
-     ```bash
-     sudo apt install nodejs
-     ```
+1. Clone the repository:
 
-2. **Clonar o repositório do Frontend**:
    ```bash
-   git clone https://tools.ages.pucrs.br/cp-planta/frontend.git
+   git clone https://github.com/Saccilotto-AGES-Projects/AGES-III-CP-Planta-Frontend.git
+   cd AGES-III-CP-Planta-Frontend
    ```
 
-3. **Instalar dependências**:
-   - No terminal, dentro do diretório do projeto:
-     ```bash
-     npm install
-     ```
-     usando yarn:
-     ```bash
-     yarn install
-     ```
+2. Install dependencies:
 
-## **Rodando o Frontend**
+   ```bash
+   npm install
+   ```
 
-### **Modo de Desenvolvimento**:
+3. Create a `.env.local` file:
 
-- Para rodar o frontend em modo de desenvolvimento:
-  ```bash
-  npm run dev
-  ```
-  usando yarn:
-  ```bash
-  yarn dev
-  ```
+   ```plaintext
+   NEXT_PUBLIC_API_URL=http://localhost:3000
+   NEXT_PUBLIC_SITE_URL=http://localhost:3001
+   ```
 
-- O projeto estará disponível em:  
-  [http://localhost:3001](http://localhost:3001)
+4. Start the development server:
 
-### **Postman/Insomnia**:
+   ```bash
+   npm run dev
+   ```
 
-- Teste suas APIs usando o [Postman](https://www.postman.com/) ou [Insomnia](https://insomnia.rest/download).
+The application will be available at <http://localhost:3001>.
 
----
+## Project Structure
 
-## **Extras**
+```plaintext
+src/
+├── app/                  # Next.js app directory
+│   ├── (auth)/           # Authentication routes
+│   ├── (dashboard)/      # Dashboard and authenticated routes
+│   ├── api/              # API route handlers
+│   └── layout.tsx        # Root layout component
+├── components/           # Reusable UI components
+│   ├── common/           # Shared components (buttons, inputs, etc.)
+│   ├── dashboard/        # Dashboard-specific components
+│   ├── forms/            # Form components and logic
+│   ├── layouts/          # Layout components
+│   └── ui/               # UI component library
+├── hooks/                # Custom React hooks
+├── lib/                  # Utility functions and services
+├── services/             # API integration services
+├── styles/               # Global styles and Tailwind configuration
+└── types/                # TypeScript type definitions
+```
 
-### Integração com o Backend
-- Em desenvolvimento
+## Key UI Modules
 
----
-## **Resumo dos Passos**
+- **Authentication**: Login and user management screens
+- **Dashboard**: Overview with key metrics and notifications
+- **Production**: Production order creation and monitoring
+- **Inventory**: Stock level tracking and movement history
+- **Products**: Product and raw material management
+- **Reports**: Production and quality reporting tools
 
-### 1. **Configurações Gerais**
+## Docker Support
 
-- **Instalar VSCode** e seus **plugins recomendados** (ESLint, Prettier, Jest, etc).
-- **Instalar NodeJS e NPM**, verificar suas versões. 
-- **Instalar Yarn**, se preferir utilizá-lo.
+The project includes Docker configuration for containerization:
 
-### 2. **Configurar o Frontend**
+```bash
+# Build the Docker image
+docker build -t cpplanta-frontend .
 
-- **Clonar o repositório** do frontend.
-- **Instalar as dependências** com `npm install` ou `yarn install`.
+# Run the container
+docker run -p 3001:3001 --env-file .env.local cpplanta-frontend
+```
 
-### 3. **Rodar o Frontend**
+## Testing
 
-- **Modo de desenvolvimento**: Execute `npm run dev` ou `yarn dev`.
-- O frontend estará acessível em:  
-  [http://localhost:3001](http://localhost:3001)
+```bash
+# Run unit tests
+npm run test
 
-### 4. **Teste com Postman ou Insomnia**
+# Run component tests
+npm run test:components
 
-- Teste as APIs usando **Postman** ou **Insomnia** para garantir a integração e funcionalidade.
+# Run end-to-end tests
+npm run test:e2e
+```
 
-### 5. **Integração com o Backend**
+## Design System
 
-- Em desenvolvimento. Mais detalhes serão fornecidos conforme a implementação avança.
+The application follows the Hortti design guidelines with:
 
----
+- **Color Palette**: Green primary (`#006F48`), Orange accent (`#F56932`), and neutral grays
+- **Typography**: Clear hierarchical type system with responsive sizing
+- **Components**: Consistent UI components with proper spacing and interaction states
+- **Responsive Design**: Mobile-first approach with adaptive layouts
 
+## Browser Support
+
+- Chrome (latest 2 versions)
+- Firefox (latest 2 versions)
+- Safari (latest 2 versions)
+- Edge (latest 2 versions)
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the AGPL License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- André Sacilotto Santos - Development Lead
+- AGES (Agência Experimental de Engenharia de Software) - Project Management
+- Hortti - Project Requirements and Design Direction
